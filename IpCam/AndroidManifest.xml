@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.miacomsoft.ipcam"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="16" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar"
+         >
+        <activity
+            android:name="ru.miacomsoft.ipcam.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+        <!-- Регистрация файла сервиса в системе -->
+        <service
+                android:enabled="true"
+                android:name=".services.ServiceExample"/>
+        <!-- =================================== -->
+
+
+
+        <!-- Добавляем автозапуск программы при перезагрузке -->
+        <receiver
+                android:name=".services.OnBootReceiver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <!-- =============================================== -->
+
+
+
+        <!-- Добавляем модуль автоповтора -->
+        <receiver
+                android:name=".services.RepeatingAlarmService"
+                android:process=":remote"/>
+        <!-- =============================================== -->
+
+    </application>
+
+
+
+
+    <!-- Работа с камерой-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <!-- Работа с звуком-->
+    <uses-feature android:name = "android.permission.RECORD_AUDIO" />
+
+    <!-- Работа с GPS-->
+    <uses-feature android:name = "android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <!-- Работа с сетью-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--  Запуск при перезагрузки  -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!--  работа с внешней памятью -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- Чтение настроек телефона -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- Отключить спящий режим при включенной программе -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <!-- получить информацию об устройстве -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
+    <!-- WIFI -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+</manifest>

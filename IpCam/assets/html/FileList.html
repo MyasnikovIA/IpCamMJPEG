@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<input id='file-input' type='file' multiple>
+<script>
+  var fileInput = document.getElementById('file-input');
+  fileInput.addEventListener('change', function(event) {
+    var input = event.target;
+
+    for (var i = 0; i < input.files.length; i++) {
+      console.log(input.files[i].name);
+    }
+  });
+</script>
+
+
+</body>
+</html>
